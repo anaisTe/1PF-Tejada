@@ -1,1 +1,65 @@
-/* You can add global styles to this file, and also import other style files */
+@use '@angular/material' as mat;
+// Plus imports for other components in your app.
+
+@include mat.core();
+
+$lime-palette: (
+ 50: #F9FBE7,
+ 100:#F0F4C3,
+ 200:#E6EE9C,
+ 300:#DCE775,
+ 400:#D4E157,
+ 500:#D3F269,
+ A100:#F4FF81,
+ A200:#EEFF41,
+ A400:#C6FF00,
+ A700:#AEEA00
+);
+
+$PF-Tejada-primary: mat.define-palette(mat.$lime-palette, A700);
+$PF-Tejada-accent: mat.define-palette(mat.$gray-palette, 900);
+
+$PF-Tejada-warn: mat.define-palette(mat.$red-palette, 700);
+
+$PF-Tejada-level: mat.define-typography-level(
+  $font-family: "Poppins",
+  $font-weight: 400,
+  $font-size: 14px,
+  $line-height: 1,
+  $letter-spacing: normal,
+);
+
+$PF-Tejada-typography-config: mat.define-typography-config(
+  $headline-1: mat.define-typography-level(112px, 112px, 300, $letter-spacing: -0.05em),
+  $headline-2: mat.define-typography-level(56px, 56px, 400, $letter-spacing: -0.02em),
+  $headline-3: mat.define-typography-level(45px, 48px, 400, $letter-spacing: -0.005em),
+  $headline-4: mat.define-typography-level(34px, 40px, 400),
+  $headline-5: mat.define-typography-level(24px, 32px, 400),
+  $headline-6: mat.define-typography-level(22px, 30px, 400),
+  $subtitle-1: mat.define-typography-level(20px, 28px, 400),
+  $subtitle-2: mat.define-typography-level(18px, 26px, 400),
+  $body-1: mat.define-typography-level(14px, 20px, 400),
+  $body-2: mat.define-typography-level(14px, 18px, 400),
+  $caption: mat.define-typography-level(10px, 14px, 400),
+  $button: mat.define-typography-level(14px, 20px, 400),
+  $overline: null,
+);
+
+$PF-Tejada-theme: mat.define-light-theme((
+  color: (
+    primary: $PF-Tejada-primary,
+    accent: $PF-Tejada-accent,
+    warn: $PF-Tejada-warn,
+  ),
+  typography: mat.define-typography-config(
+    $font-family: "Poppins",
+  ),
+  density: 0,
+
+));
+
+@include mat.all-component-themes($PF-Tejada-theme);
+
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Poppins, sans-serif; }
