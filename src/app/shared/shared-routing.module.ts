@@ -8,8 +8,8 @@ const SharedRoutes: Routes = [
   {
     path: '', component: LayoutComponent,
     children:[
-        { path: '', component:HomeComponent },
-        { path: 'cursos', component: CursosComponent }
+      { path: '', component:HomeComponent },
+      { path: 'cursos', component: CursosComponent }
     ]
   }
 ];

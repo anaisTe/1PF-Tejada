@@ -1,14 +1,15 @@
-<mat-sidenav-container class="example-container">
-    <mat-sidenav #sidenav [mode]="mode.value || 'over'">
-      <p><button mat-button (click)="sidenav.toggle()">Toggle</button></p>
+<mat-sidenav-container>
+    <mat-sidenav #sidenav [mode]="'over'" class="custom-sidenav">
+      <app-sidenav-items></app-sidenav-items>
     </mat-sidenav>
   
     <mat-sidenav-content class="custom-content">
       <app-header></app-header>
-      <p><button mat-button (click)="sidenav.toggle()">Toggle</button></p>
 
-      <router-outlet></router-outlet>
-  
-      <app-footer></app-footer>
+      <div class="custom-content-routerOutlet">
+        <router-outlet></router-outlet>
+        <app-footer></app-footer>
+      </div>
+
     </mat-sidenav-content>
 </mat-sidenav-container>

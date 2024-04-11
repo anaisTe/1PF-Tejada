@@ -8,4 +8,18 @@
 
 .custom-content {
     background: #F8FBE9;
+
+    &-routerOutlet {
+        display: block;
+        height: 100vh;
+        position: relative;
+        top: 83px;
+        padding: 24px 0 0;
+    }
+}
+.custom-sidenav {
+    background: #F8FBE9;
+    padding: 12px 47px 12px 32px;
+    border-top-right-radius: 22px;
+    border-bottom-right-radius: 22px;
 }

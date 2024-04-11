@@ -1,6 +1,8 @@
-import { Component } from '@angular/core';
-import { FormControl } from '@angular/forms';
-import { MatDrawerMode } from '@angular/material/sidenav';
+import { Component, ViewChild } from '@angular/core';
+import { MatSidenav } from '@angular/material/sidenav';
+import { SidenavService } from '../../services/sidenav.service';
+import { MatIconRegistry } from '@angular/material/icon';
+import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-layout',
@@ -8,5 +10,20 @@ import { MatDrawerMode } from '@angular/material/sidenav';
   styleUrl: './layout.component.scss'
 })
 export class LayoutComponent {
-  mode = new FormControl('push' as MatDrawerMode);
+  @ViewChild('sidenav') public sidenav!: MatSidenav;
+
+  constructor(
+    private _sidenavService: SidenavService,
+    private iconRegistry: MatIconRegistry, 
+    private sanitizer: DomSanitizer
+  ) {
+    this.iconRegistry.addSvgIcon(
+      "coffe",
+      this.sanitizer.bypassSecurityTrustResourceUrl("assets/bx-coffee.svg")
+    );
+  }
+
+  ngAfterViewInit(): void {
+    this._sidenavService.setSidenav(this.sidenav);
+  }
 }
