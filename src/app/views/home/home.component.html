@@ -1,7 +1,110 @@
-<div class="container">
-    <div class="row">
-        <div class="col-12">
-            <p>home works!</p>
+<div class="row">
+    <div class="col-12">
+        <div class="banner-container">
+            <div class="banner-container-title">
+                <p>¡Hola Estudiante!</p>
+                <span>Tenemos novedades para ti</span>
+            </div>
+            <div class="banner-container-btn">
+                <button mat-flat-button color="primary">
+                    Nuevos cursos 
+                    <mat-icon>navigate_next</mat-icon>
+                </button>
+                <button mat-flat-button color="accent">
+                    Webinars 
+                    <mat-icon>navigate_next</mat-icon>
+                </button>
+                <button mat-flat-button color="accent">
+                    Videos complementarios 
+                    <mat-icon>navigate_next</mat-icon>
+                </button>
+            </div>
+            <div class="banner-container-img">
+                <img src="../../../assets/undraw_team_work_k-80-m.svg" width="100%" class="d-none d-md-none d-lg-block">
+            </div>
+        </div>
+
+        <div class="custom-container">
+            <div class="custom-container-title">
+                <mat-icon svgIcon="bookmark"></mat-icon>
+                Mis cursos
+            </div>
+
+            <div class="row">
+                <div class="col-lg-4 mb-3" *ngFor="let info of cursos">
+                    <div class="curso-item" >
+                        <div class="curso-item-title">
+                            <p>{{info.titulo}}</p>
+                            <span>{{info.categoria}}</span>
+                        </div>
+                        <div class="curso-item-time">
+                            <span>Horario</span>
+                            <p>{{info.fecha}}</p>
+                        </div>
+                        <div class="curso-item-tag">
+                            <span [class]="setTagColor(info.tag)">{{info.tag}}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="custom-container">
+                    <div class="custom-container-title">
+                        <mat-icon>schedule</mat-icon>
+                        Tareas pendientes
+                    </div>
+                    <div class="custom-list">
+                        <ul>
+                            <li>
+                                <mat-icon>description</mat-icon>
+                                <div class="custom-list-info">
+                                    <p>Creación de website</p>
+                                    <span>Vence en 3 días</span>
+                                </div>
+                            </li>
+                            <li>
+                                <mat-icon>description</mat-icon>
+                                <div class="custom-list-info">
+                                    <p>Maquetación web</p>
+                                    <span>Vence en 6 días</span>
+                                </div>
+                            </li>
+                            <li>
+                                <mat-icon>description</mat-icon>
+                                <div class="custom-list-info">
+                                    <p>Primera entrega PF</p>
+                                    <span>Vence en 12 días</span>
+                                </div>
+                            </li>
+                            <li>
+                                <mat-icon>description</mat-icon>
+                                <div class="custom-list-info">
+                                    <p>Primera entrega PF</p>
+                                    <span>Vence en 12 días</span>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="col-lg-6">
+                <div class="custom-container">
+                    <div class="custom-container-title">
+                        <mat-icon class="material-symbols-outlined">trending_up</mat-icon>
+                        Asistencia
+                    </div>
+                    <div class="d-flex" style="color: gray;">
+                        <mat-icon class="material-symbols-outlined">build_circle</mat-icon>
+                        <p>En proceso</p>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>

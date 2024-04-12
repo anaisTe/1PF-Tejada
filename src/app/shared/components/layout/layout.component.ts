@@ -13,15 +13,8 @@ export class LayoutComponent {
   @ViewChild('sidenav') public sidenav!: MatSidenav;
 
   constructor(
-    private _sidenavService: SidenavService,
-    private iconRegistry: MatIconRegistry, 
-    private sanitizer: DomSanitizer
-  ) {
-    this.iconRegistry.addSvgIcon(
-      "coffe",
-      this.sanitizer.bypassSecurityTrustResourceUrl("assets/bx-coffee.svg")
-    );
-  }
+    private _sidenavService: SidenavService
+  ) {}
 
   ngAfterViewInit(): void {
     this._sidenavService.setSidenav(this.sidenav);
