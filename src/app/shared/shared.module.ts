@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 //Angular Material 
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatIconModule } from '@angular/material/icon';
+import { MatTableModule } from '@angular/material/table';
 
 import { OverlayModule } from '@angular/cdk/overlay';
 import { CdkTreeModule } from '@angular/cdk/tree';
@@ -26,7 +27,6 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatSelectModule } from '@angular/material/select';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatSortModule } from '@angular/material/sort';
-import { MatTableModule } from '@angular/material/table';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatTreeModule } from '@angular/material/tree';
@@ -42,11 +42,13 @@ import { CursosComponent } from '../views/cursos/cursos.component';
 import { SidenavService } from './services/sidenav.service';
 import { HttpClientModule, provideHttpClient, withFetch } from '@angular/common/http';
 import { SidenavItemsComponent } from './components/sidenav-items/sidenav-items.component';
+import { AlumnosComponent } from '../views/alumnos/alumnos.component';
 
 
 const materialModules = [
   MatSidenavModule,
   MatIconModule,
+  MatTableModule,
 
   CdkTreeModule,
   MatAutocompleteModule,
@@ -65,7 +67,6 @@ const materialModules = [
   MatSelectModule,
   MatSnackBarModule,
   MatSortModule,
-  MatTableModule,
   MatTabsModule,
   MatToolbarModule,
   MatFormFieldModule,
@@ -85,6 +86,7 @@ const materialModules = [
     HomeComponent,
     CursosComponent,
     SidenavItemsComponent,
+    AlumnosComponent
   ],
   imports: [
     ...materialModules,
@@ -98,6 +100,7 @@ const materialModules = [
     FooterComponent,
     HomeComponent,
     CursosComponent,
+    AlumnosComponent
   ],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
   providers: [

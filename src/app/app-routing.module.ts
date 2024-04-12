@@ -1,12 +1,14 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AlumnosComponent } from './views/alumnos/alumnos.component';
+import { CursosComponent } from './views/cursos/cursos.component';
 
 const AppRoutes: Routes = [
   {
-    path: '', redirectTo: 'home', pathMatch: 'full'
+    path: '', redirectTo: 'inicio', pathMatch: 'full'
   },
   {
-    path: 'home', 
+    path: 'inicio', 
     loadChildren: () => import('./shared/shared-routing.module').then(m => m.SharedRoutingModule)
   }
 ];

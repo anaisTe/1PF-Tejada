@@ -3,5 +3,7 @@
     <p>Alumni</p> 
   </div>
 <ul>
-    <li *ngFor="let item of sidenavItems">{{item.textName}}</li>
+  <li *ngFor="let item of sidenavItems" routerLink="{{item.path}}" routerLinkActive="active" ariaCurrentWhenActive="page">
+    {{item.textName}}
+  </li>
 </ul>

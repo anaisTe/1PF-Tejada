@@ -40,8 +40,8 @@ export class HomeComponent {
     {
       titulo: 'Photoshop e Illustrator',
       categoria: 'Diseño UX/UI',
-      fecha: '20 May 2024, 06:30pm',
-      tag: 'Pendiente'
+      fecha: '20 Abr 2024, 06:30pm',
+      tag: 'En curso'
     },
     {
       titulo: 'Google Ads',

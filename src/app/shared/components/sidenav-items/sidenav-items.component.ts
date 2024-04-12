@@ -9,13 +9,16 @@ export class SidenavItemsComponent {
 
   sidenavItems = [
     {
-      textName: 'Inicio'
+      textName: 'Inicio',
+      path: '/inicio'
     },
     {
-      textName: 'Lista de alumnos'
+      textName: 'Lista de alumnos',
+      path: '/alumnos'
     },
     {
-      textName: 'ABM'
+      textName: 'Cursos',
+      path: '/cursos'
     }
   ]
 }
