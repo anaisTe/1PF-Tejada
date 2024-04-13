@@ -7,6 +7,7 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
 import { SharedModule } from './shared/shared.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule, provideHttpClient, withFetch } from '@angular/common/http';
+import { ViewsModule } from './views/views.module';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { HttpClientModule, provideHttpClient, withFetch } from '@angular/common/
     AppRoutingModule,
     SharedModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    ViewsModule
   ],
   providers: [
     provideClientHydration(),

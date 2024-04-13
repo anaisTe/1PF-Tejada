@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { MatIconRegistry } from '@angular/material/icon';
 import { DomSanitizer } from '@angular/platform-browser';
-import { SidenavService } from '../../services/sidenav.service';
+import { SidenavService } from '../../../core/services/sidenav.service';
 
 @Component({
   selector: 'app-header',

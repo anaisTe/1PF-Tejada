@@ -32,17 +32,13 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatTreeModule } from '@angular/material/tree';
 import { MatRadioModule } from '@angular/material/radio';
 
-//Components
+//Components and others
 import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
-import { LayoutComponent } from './components/layout/layout.component';
-import { SharedRoutingModule } from './shared-routing.module';
-import { HomeComponent } from '../views/home/home.component';
-import { CursosComponent } from '../views/cursos/cursos.component';
-import { SidenavService } from './services/sidenav.service';
 import { HttpClientModule, provideHttpClient, withFetch } from '@angular/common/http';
 import { SidenavItemsComponent } from './components/sidenav-items/sidenav-items.component';
-import { AlumnosComponent } from '../views/alumnos/alumnos.component';
+import { SidenavService } from '../core/services/sidenav.service';
+import { ViewsRoutingModule } from '../views/views-routing.module';
 
 
 const materialModules = [
@@ -82,25 +78,19 @@ const materialModules = [
   declarations: [
     HeaderComponent,
     FooterComponent,
-    LayoutComponent,
-    HomeComponent,
-    CursosComponent,
     SidenavItemsComponent,
-    AlumnosComponent
   ],
   imports: [
     ...materialModules,
     CommonModule,
-    SharedRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    ViewsRoutingModule
   ],
   exports: [
     ...materialModules,
     HeaderComponent,
     FooterComponent,
-    HomeComponent,
-    CursosComponent,
-    AlumnosComponent
+    SidenavItemsComponent
   ],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
   providers: [

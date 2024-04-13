@@ -1,16 +1,16 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { LayoutComponent } from './components/layout/layout.component';
 import { HomeComponent } from '../views/home/home.component';
 import { AlumnosComponent } from '../views/alumnos/alumnos.component';
 import { CursosComponent } from '../views/cursos/cursos.component';
+import { LayoutComponent } from './layout.component';
 
-const SharedRoutes: Routes = [
+const ViewsRoutes: Routes = [
   {
     path: '', component: LayoutComponent,
     children:[
-      { path: '', component:HomeComponent },
-      { path: 'alumnos', component: AlumnosComponent },
+      { path: '', component: AlumnosComponent },
+      { path: 'inicio', component:HomeComponent },
       { path: 'cursos', component: CursosComponent }
     ]
   },
@@ -18,7 +18,7 @@ const SharedRoutes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forChild(SharedRoutes)],
+  imports: [RouterModule.forChild(ViewsRoutes)],
   exports: [RouterModule]
 }) 
-export class SharedRoutingModule { }
+export class ViewsRoutingModule { }

@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { menuItem } from '../../interfaces/sidenav.interface';
 
 @Component({
   selector: 'app-sidenav-items',
@@ -7,7 +8,7 @@ import { Component } from '@angular/core';
 })
 export class SidenavItemsComponent {
 
-  sidenavItems = [
+  sidenavItems: menuItem[] = [
     {
       textName: 'Inicio',
       path: '/inicio'

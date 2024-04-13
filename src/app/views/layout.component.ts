@@ -1,8 +1,6 @@
 import { Component, ViewChild } from '@angular/core';
 import { MatSidenav } from '@angular/material/sidenav';
-import { SidenavService } from '../../services/sidenav.service';
-import { MatIconRegistry } from '@angular/material/icon';
-import { DomSanitizer } from '@angular/platform-browser';
+import { SidenavService } from '../core/services/sidenav.service';
 
 @Component({
   selector: 'app-layout',

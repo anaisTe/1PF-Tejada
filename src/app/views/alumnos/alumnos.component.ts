@@ -1,14 +1,7 @@
 import { Component, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
-
-interface AlumniData {
-  name: string;
-  lastName: string;
-  course: string;
-  status: string;
-  action: any;
-}
+import { AlumniData } from '../../shared/interfaces/alumnos.interface';
 
 @Component({
   selector: 'app-alumnos',
@@ -35,6 +28,7 @@ export class AlumnosComponent {
     this.dataSource.paginator = this.paginator;
   }
 }
+
 const Estudiantes: AlumniData[] = [
   {lastName: 'Test1', name: 'User 1', course: 'Google Ads', status: 'Aprobado', action: ''},
   {lastName: 'Test2', name: 'User 2', course: 'Desarrollo web', status: 'Desaprobado', action: ''},

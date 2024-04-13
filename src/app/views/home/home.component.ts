@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { MatIconRegistry } from '@angular/material/icon';
 import { DomSanitizer } from '@angular/platform-browser';
+import { Cursos } from '../../shared/interfaces/home.interface';
 
 @Component({
   selector: 'app-home',
@@ -30,7 +31,7 @@ export class HomeComponent {
     }
   }
 
-  cursos = [
+  cursos: Cursos[] = [
     {
       titulo: 'Desarrollo web',
       categoria: 'Programación',
