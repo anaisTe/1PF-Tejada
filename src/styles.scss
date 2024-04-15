@@ -60,6 +60,13 @@ $PF-Tejada-theme: mat.define-light-theme((
 
 @include mat.all-component-themes($PF-Tejada-theme);
 
+div:where(.swal2-container) button:where(.swal2-styled).swal2-confirm {
+  color: #212121 !important;
+}
+div:where(.swal2-container) button:where(.swal2-styled).swal2-cancel {
+  color: #212121 !important;
+  background-color: transparent !important;
+}
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Poppins, sans-serif; }

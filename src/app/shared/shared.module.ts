@@ -42,6 +42,7 @@ import { SidenavItemsComponent } from './components/sidenav-items/sidenav-items.
 import { SidenavService } from '../core/services/sidenav.service';
 import { ViewsRoutingModule } from '../views/views-routing.module';
 import { FormFieldValidationErrorsPipe } from './pipes/form-validation-error.pipe';
+import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 
 
 const materialModules = [
@@ -89,14 +90,16 @@ const materialModules = [
     ...materialModules,
     CommonModule,
     HttpClientModule,
-    ViewsRoutingModule
+    ViewsRoutingModule,
+    SweetAlert2Module
   ],
   exports: [
     ...materialModules,
     HeaderComponent,
     FooterComponent,
     SidenavItemsComponent,
-    FormFieldValidationErrorsPipe
+    FormFieldValidationErrorsPipe,
+    SweetAlert2Module
   ],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
   providers: [
