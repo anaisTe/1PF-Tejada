@@ -5,6 +5,9 @@ import { CommonModule } from '@angular/common';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTableModule } from '@angular/material/table';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatPaginatorModule } from '@angular/material/paginator';
+
 
 import { OverlayModule } from '@angular/cdk/overlay';
 import { CdkTreeModule } from '@angular/cdk/tree';
@@ -22,7 +25,6 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatListModule } from '@angular/material/list';
 import { MatMenuModule } from '@angular/material/menu';
-import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatSelectModule } from '@angular/material/select';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
@@ -39,12 +41,15 @@ import { HttpClientModule, provideHttpClient, withFetch } from '@angular/common/
 import { SidenavItemsComponent } from './components/sidenav-items/sidenav-items.component';
 import { SidenavService } from '../core/services/sidenav.service';
 import { ViewsRoutingModule } from '../views/views-routing.module';
+import { FormFieldValidationErrorsPipe } from './pipes/form-validation-error.pipe';
 
 
 const materialModules = [
   MatSidenavModule,
   MatIconModule,
   MatTableModule,
+  MatDialogModule,
+  MatPaginatorModule,
 
   CdkTreeModule,
   MatAutocompleteModule,
@@ -58,7 +63,6 @@ const materialModules = [
   MatListModule,
   MatMenuModule,
   MatProgressSpinnerModule,
-  MatPaginatorModule,
   MatRippleModule,
   MatSelectModule,
   MatSnackBarModule,
@@ -79,6 +83,7 @@ const materialModules = [
     HeaderComponent,
     FooterComponent,
     SidenavItemsComponent,
+    FormFieldValidationErrorsPipe
   ],
   imports: [
     ...materialModules,
@@ -90,7 +95,8 @@ const materialModules = [
     ...materialModules,
     HeaderComponent,
     FooterComponent,
-    SidenavItemsComponent
+    SidenavItemsComponent,
+    FormFieldValidationErrorsPipe
   ],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
   providers: [

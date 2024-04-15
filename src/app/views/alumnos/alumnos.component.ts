@@ -1,7 +1,8 @@
-import { Component, ViewChild } from '@angular/core';
-import { MatPaginator } from '@angular/material/paginator';
+import { Component } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
-import { AlumniData } from '../../shared/interfaces/alumnos.interface';
+import { AlumniData } from '../../shared/models/alumnos.model';
+import { MatDialog } from '@angular/material/dialog';
+import { NuevoAlumnoComponent } from './dialog/nuevo-alumno/nuevo-alumno.component';
 
 @Component({
   selector: 'app-alumnos',
@@ -9,37 +10,35 @@ import { AlumniData } from '../../shared/interfaces/alumnos.interface';
   styleUrl: './alumnos.component.scss'
 })
 export class AlumnosComponent {
+  estudiantes: AlumniData[] = [
+    {id: 1, lastName: 'Test1', name: 'User 1', email: 'userN@mail.com', course: 'ANGULAR', createdAt: new Date(),},
+    {id: 2, lastName: 'Test2', name: 'User 2', email: 'userN@mail.com', course: 'DISEÑO', createdAt: new Date(),},
+    {id: 3, lastName: 'Test3', name: 'User 3', email: 'userN@mail.com', course: 'REACTJS', createdAt: new Date(),},
+    {id: 4, lastName: 'Test4', name: 'User 4', email: 'userN@mail.com', course: 'ANGULAR', createdAt: new Date(),},
+  ];
 
-  @ViewChild(MatPaginator) paginator!: MatPaginator;
-
-  setTagColor(color: string) {
-    switch(color) {
-      case 'Aprobado':
-        return 'color-green';
-      default:
-        return 'color-red';
-    }
-  }
-
-  displayedColumns: string[] = ['name', 'lastName', 'course', 'status', 'action'];
-  dataSource = new MatTableDataSource<AlumniData>(Estudiantes);
+  displayedColumns: string[] = ['id', 'name', 'lastName', 'email', 'course', 'createdAt', 'action'];
+  dataSource = new MatTableDataSource<AlumniData>(this.estudiantes);
   
-  ngAfterViewInit() {
-    this.dataSource.paginator = this.paginator;
+  constructor(public newUserDialogRef: MatDialog) {}
+
+  newUserDialog(): void {
+    this.newUserDialogRef.open( NuevoAlumnoComponent)
+    .afterClosed()
+    .subscribe({
+      next: (result): void => {
+        if(result) {
+          
+          result.id = this.estudiantes.map( ele => ele.id + 1).pop();
+
+          result.createdAt = new Date();
+          
+          this.estudiantes = [...this.estudiantes, result]
+          
+        }
+      },
+    })
   }
+
 }
 
-const Estudiantes: AlumniData[] = [
-  {lastName: 'Test1', name: 'User 1', course: 'Google Ads', status: 'Aprobado', action: ''},
-  {lastName: 'Test2', name: 'User 2', course: 'Desarrollo web', status: 'Desaprobado', action: ''},
-  {lastName: 'Test3', name: 'User 3', course: 'Angular', status: 'Desaprobado', action: ''},
-  {lastName: 'Test4', name: 'User 4', course: 'Diseño UX/UI', status: 'Aprobado', action: ''},
-  {lastName: 'Test5', name: 'User 5', course: 'React js', status: 'Aprobado', action: ''},
-  {lastName: 'Test6', name: 'User 6', course: 'Desarrollo web', status: 'Desaprobado', action: ''},
-  {lastName: 'Test7', name: 'User 7', course: 'Google Ads', status: 'Aprobado', action: ''},
-  {lastName: 'Test8', name: 'User 8', course: 'Desarrollo web', status: 'Aprobado', action: ''},
-  {lastName: 'Test9', name: 'User 9', course: 'Angular', status: 'Desaprobado', action: ''},
-  {lastName: 'Test10', name: 'User 10', course: 'Diseño UX/UI', status: 'Aprobado', action: ''},
-  {lastName: 'Test11', name: 'User 11', course: 'React js', status: 'Desaprobado', action: ''},
-  {lastName: 'Test12', name: 'User 12', course: 'Desarrollo web', status: 'Aprobado', action: ''},
-];

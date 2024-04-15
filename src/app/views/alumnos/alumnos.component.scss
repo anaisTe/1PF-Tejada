@@ -1,18 +1,12 @@
 $color-border-table: #005249;
 
-table {
-    width: 100%;
-}
-
 .alumnos-container {
-    // border: 1px solid #0000001f;
     border-radius: 7px;
 
     &-header {
         display: flex;
         align-items: center;
         justify-content: space-between;
-        // border-bottom: 1px solid #0000001f;
         padding: 10px 20px;
 
         &-title {

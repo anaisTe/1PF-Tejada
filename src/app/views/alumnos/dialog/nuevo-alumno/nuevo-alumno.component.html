@@ -1,0 +1,52 @@
+<h2 mat-dialog-title>Nuevo alumno</h2>
+<mat-dialog-content>
+    <form [formGroup]="newUserForm">
+        <div class="row">
+            <div class="col-md-6 my-3">
+                <mat-form-field appearance="outline" class="w-100">
+                    <mat-label>Nombre</mat-label>
+                    <input formControlName="name" matInput>
+                    <mat-error>
+                        {{ nameControl?.errors | formFieldValidationErrors }}
+                    </mat-error>
+                </mat-form-field>
+            </div>
+            <div class="col-md-6 my-3">
+                <mat-form-field appearance="outline" class="w-100">
+                    <mat-label>Apellido</mat-label>
+                    <input formControlName="lastName" matInput>
+                    <mat-error>
+                        {{ lastNameControl?.errors | formFieldValidationErrors }}
+                    </mat-error>
+                </mat-form-field>
+            </div>
+            <div class="col-md-6 my-3">
+                <mat-form-field appearance="outline" class="w-100">
+                    <mat-label>Email</mat-label>
+                    <input formControlName="email" matInput>
+                    <mat-error>
+                        {{ emailControl?.errors | formFieldValidationErrors }}
+                    </mat-error>
+                </mat-form-field>
+            </div>
+            <div class="col-md-6 my-3">
+                <mat-form-field appearance="outline" class="w-100">
+                    <mat-label>Curso</mat-label>
+                    <select id="courses" style="display: none;"></select>
+                    <mat-select id="courses" formControlName="course">
+                      <mat-option value="ANGULAR">Angular</mat-option>
+                      <mat-option value="REACTJS">React js</mat-option>
+                      <mat-option value="DISEÑO">Diseño</mat-option>
+                    </mat-select>
+                    <mat-error>
+                        {{ courseControl?.errors | formFieldValidationErrors }}
+                    </mat-error>
+                </mat-form-field>              
+            </div>
+        </div>
+    </form>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-flat-button mat-dialog-close>Cancel</button>
+  <button mat-flat-button (click)="onSave()" color="primary">Guardar</button>
+</mat-dialog-actions>
