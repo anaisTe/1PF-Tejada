@@ -1,4 +1,4 @@
-<h2 mat-dialog-title>Nuevo alumno</h2>
+<h2 mat-dialog-title>{{data?.dialogHeader}}</h2>
 <mat-dialog-content>
     <form [formGroup]="newUserForm">
         <div class="row">
@@ -31,7 +31,7 @@
             </div>
             <div class="col-md-6 my-3">
                 <mat-form-field appearance="outline" class="w-100">
-                    <mat-label>Curso</mat-label>
+                    <mat-label>Curso</mat-label> 
                     <select id="courses" style="display: none;"></select>
                     <mat-select id="courses" formControlName="course">
                       <mat-option value="ANGULAR">Angular</mat-option>
@@ -47,6 +47,6 @@
     </form>
 </mat-dialog-content>
 <mat-dialog-actions align="end">
-  <button mat-flat-button mat-dialog-close>Cancel</button>
-  <button mat-flat-button (click)="onSave()" color="primary">Guardar</button>
+  <button mat-flat-button [mat-dialog-close]="true">{{data?.cancelButtonLabel}}</button>
+  <button mat-flat-button (click)="onSave()" color="primary">{{data?.confirmButtonLabel}}</button>
 </mat-dialog-actions>

@@ -1,7 +1,7 @@
 import { Component, Inject } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-import { AlumniData } from '../../../../shared/models/alumnos.model';
+import { IAlumnosDialog } from '../../../../shared/models/alumnos.model';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -11,16 +11,18 @@ import Swal from 'sweetalert2';
 })
 export class NuevoAlumnoComponent {
 
-
   constructor(
     private matDialogRef: MatDialogRef<NuevoAlumnoComponent>,
-    @Inject(MAT_DIALOG_DATA) private editItem?: AlumniData
+    @Inject(MAT_DIALOG_DATA) public data?: IAlumnosDialog
   ) {
+    matDialogRef.disableClose = true;
 
-    if (this.editItem) {
-      this.newUserForm.patchValue(this.editItem);
+    if (this.data?.dataForm) {
+      this.newUserForm.patchValue(this.data.dataForm);
     }
   }
+
+
   newUserForm = new FormGroup({
     name: new FormControl('', [Validators.required, Validators.pattern('^[a-zA-ZÁÉÍÓÚáéíóúñÑ]+$')]),
     lastName: new FormControl('', [Validators.required, Validators.pattern('^[a-zA-ZÁÉÍÓÚáéíóúñÑ]+$')]),
@@ -47,17 +49,14 @@ export class NuevoAlumnoComponent {
     if (this.newUserForm.invalid) {
       this.newUserForm.markAllAsTouched();
     } else {
+      this.matDialogRef.close(this.newUserForm.value);
+
       Swal.fire({
         title: 'Guardado',
-        text: 'El nuevo usuario fue creado con éxito',
         icon: 'success',
         confirmButtonColor: '#aeea00',
         confirmButtonText: 'Aceptar',
-      }).then( result => {
-        if (result.isConfirmed) {
-          this.matDialogRef.close(this.newUserForm.value);
-        }
       })
-    }
+    } 
   }
 }

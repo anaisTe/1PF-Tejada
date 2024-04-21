@@ -4,6 +4,7 @@ import { AlumniData } from '../../shared/models/alumnos.model';
 import { MatDialog } from '@angular/material/dialog';
 import { NuevoAlumnoComponent } from './dialog/nuevo-alumno/nuevo-alumno.component';
 import Swal from 'sweetalert2';
+import { take } from 'rxjs';
 
 @Component({
   selector: 'app-alumnos',
@@ -11,50 +12,72 @@ import Swal from 'sweetalert2';
   styleUrl: './alumnos.component.scss'
 })
 export class AlumnosComponent {
+
   estudiantes: AlumniData[] = [
-    {id: 1, lastName: 'Test1', name: 'User 1', email: 'userN@mail.com', course: 'ANGULAR', createdAt: new Date(),},
-    {id: 2, lastName: 'Test2', name: 'User 2', email: 'userN@mail.com', course: 'DISEÑO', createdAt: new Date(),},
-    {id: 3, lastName: 'Test3', name: 'User 3', email: 'userN@mail.com', course: 'REACTJS', createdAt: new Date(),},
-    {id: 4, lastName: 'Test4', name: 'User 4', email: 'userN@mail.com', course: 'ANGULAR', createdAt: new Date(),},
+    {id: 1, lastName: 'test', name: 'kika', email: 'kika@mail.com', course: 'ANGULAR', createdAt: new Date(),},
+    {id: 2, lastName: 'test', name: 'lulu', email: 'lulu@mail.com', course: 'DISEÑO', createdAt: new Date(),},
+    {id: 3, lastName: 'test', name: 'mailo', email: 'mailo@mail.com', course: 'REACTJS', createdAt: new Date(),},
+    {id: 4, lastName: 'test', name: 'nena', email: 'nena@mail.com', course: 'ANGULAR', createdAt: new Date(),},
   ];
 
   displayedColumns: string[] = ['id', 'name', 'lastName', 'email', 'course', 'createdAt', 'action'];
   dataSource = new MatTableDataSource<AlumniData>(this.estudiantes);
   
-  constructor(public newUserDialogRef: MatDialog) {}
+  constructor(
+    public alumnoDialog: MatDialog
+  ) {}
 
-  newUserDialog(editingUser?: AlumniData): void {
-    this.newUserDialogRef.open( NuevoAlumnoComponent, {
-      data: editingUser
-    })
-    .afterClosed()
-    .subscribe({
-      next: (result): void => {
-        if (editingUser) {
-          this.estudiantes = this.estudiantes.map( ele =>
-            ele.id === editingUser.id ? { ...ele, ...result } : ele
-          );
-        } else {
-          result.id = this.estudiantes.map( ele => ele.id + 1).pop();
-  
-          result.createdAt = new Date();
-          
-          this.estudiantes = [...this.estudiantes, result]
+  newUserDialog() {
+    this.alumnoDialog.open(NuevoAlumnoComponent, {
+      data: {
+        dialogHeader: 'Nuevo alumno',
+        cancelButtonLabel: 'Cancelar', 
+        confirmButtonLabel: 'Guardar'
+      }
+    }).afterClosed().pipe(take(1)).subscribe({
+        next: (value) => {
+          value.id = this.estudiantes.map(ele => ele.id + 1 ).pop()
+    
+          value.createdAt = new Date();
+            
+          this.estudiantes = [...this.estudiantes, value]
         }
-      },
-    })
+      })
+  }
+
+  editUserDialog(editingUser: AlumniData) {
+    this.alumnoDialog.open(NuevoAlumnoComponent, {
+      data: {
+        dialogHeader: 'Editar alumno',
+        cancelButtonLabel: 'Cancelar', 
+        confirmButtonLabel: 'Actualizar',
+        dataForm: editingUser
+      }
+    }).afterClosed().subscribe({
+    next: (res) => {
+        if(editingUser) {
+          this.estudiantes = this.estudiantes.map( ele =>
+            ele.id === editingUser.id ? { ...ele, ...res } : ele
+          );
+        }
+      }
+    });
   }
 
   onDeleteUser(id: number): void {
+    const dato = this.estudiantes.filter(ele => ele.id === id ).map(ele => ele.name);
     Swal.fire({
       title: '¿Está seguro?',
-      text: 'El usuario será eliminado',
+      text: `El usuario ${dato} será eliminado`,
       icon: 'warning',
-      confirmButtonColor: '#aeea00',
+      confirmButtonColor: '#ffffff',
       confirmButtonText: 'Aceptar',
       showCancelButton: true,
-      cancelButtonText: 'Cancelar'
+      cancelButtonText: 'Cancelar',
+      cancelButtonColor: '#212121'
     }).then((result) => {
+      console.log('ress', result);
+      
       if (result.isConfirmed) {
         Swal.fire({
           title: "Eliminado",
