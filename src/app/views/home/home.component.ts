@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { MatIconRegistry } from '@angular/material/icon';
 import { DomSanitizer } from '@angular/platform-browser';
-import { Cursos } from '../../shared/models/home.model';
+import { HomeService } from '../../core/services/home.service';
 
 @Component({
   selector: 'app-home',
@@ -12,13 +12,18 @@ export class HomeComponent {
 
   constructor(    
     private iconRegistry: MatIconRegistry, 
-    private sanitizer: DomSanitizer
+    private sanitizer: DomSanitizer,
+    private _homeBd: HomeService
   ) {
     this.iconRegistry.addSvgIcon(
       "bookmark",
       this.sanitizer.bypassSecurityTrustResourceUrl("assets/bx-book-bookmark.svg")
     );
   }
+
+  cursos = this._homeBd.getCursos();
+
+  notiList = this._homeBd.getNotif();
 
   setTagColor(color: string) {
     switch(color) {
@@ -31,24 +36,5 @@ export class HomeComponent {
     }
   }
 
-  cursos: Cursos[] = [
-    {
-      titulo: 'Desarrollo web',
-      categoria: 'Programación',
-      fecha: '01 Abr 2024, 03:30pm',
-      tag: 'En curso'
-    },
-    {
-      titulo: 'Photoshop e Illustrator',
-      categoria: 'Diseño UX/UI',
-      fecha: '20 Abr 2024, 06:30pm',
-      tag: 'En curso'
-    },
-    {
-      titulo: 'Google Ads',
-      categoria: 'Negocio',
-      fecha: '02 Oct 2023, 04:30pm',
-      tag: 'Culminado'
-    }
-  ]
+
 }

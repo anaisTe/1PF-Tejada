@@ -8,6 +8,7 @@ import { provideHttpClient, withFetch } from '@angular/common/http';
 import { SidenavService } from '../core/services/sidenav.service';
 import { LayoutComponent } from './layout.component';
 import { AlumnosModule } from './alumnos/alumnos.module';
+import { AlumnosService } from '../core/services/alumnos.service';
 
 
 @NgModule({
@@ -32,7 +33,8 @@ import { AlumnosModule } from './alumnos/alumnos.module';
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
   providers: [
     provideHttpClient(withFetch()),
-    SidenavService
+    SidenavService,
+    AlumnosService
   ]
 })
 export class ViewsModule { }

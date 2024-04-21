@@ -1,34 +1,45 @@
-import { Component } from '@angular/core';
-import { MatTableDataSource } from '@angular/material/table';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { AlumniData } from '../../shared/models/alumnos.model';
 import { MatDialog } from '@angular/material/dialog';
 import { NuevoAlumnoComponent } from './dialog/nuevo-alumno/nuevo-alumno.component';
 import Swal from 'sweetalert2';
-import { take } from 'rxjs';
+import { Subscription, take } from 'rxjs';
+import { AlumnosService } from '../../core/services/alumnos.service';
 
 @Component({
   selector: 'app-alumnos',
   templateUrl: './alumnos.component.html',
   styleUrl: './alumnos.component.scss'
 })
-export class AlumnosComponent {
-
-  estudiantes: AlumniData[] = [
-    {id: 1, lastName: 'test', name: 'kika', email: 'kika@mail.com', course: 'ANGULAR', createdAt: new Date(),},
-    {id: 2, lastName: 'test', name: 'lulu', email: 'lulu@mail.com', course: 'DISEÑO', createdAt: new Date(),},
-    {id: 3, lastName: 'test', name: 'mailo', email: 'mailo@mail.com', course: 'REACTJS', createdAt: new Date(),},
-    {id: 4, lastName: 'test', name: 'nena', email: 'nena@mail.com', course: 'ANGULAR', createdAt: new Date(),},
-  ];
+export class AlumnosComponent implements OnInit, OnDestroy {
 
   displayedColumns: string[] = ['id', 'name', 'lastName', 'email', 'course', 'createdAt', 'action'];
-  dataSource = new MatTableDataSource<AlumniData>(this.estudiantes);
-  
+  estudiantes: AlumniData[] = [];
+
+  alumniBd!: Subscription;
+
   constructor(
-    public alumnoDialog: MatDialog
-  ) {}
+    public alumnoDialog: MatDialog,
+    private _getAlumnoService: AlumnosService
+  ) { }
+
+  ngOnInit(): void {
+    
+    this.getDatos();
+
+  }
+
+  getDatos() {
+    this.alumniBd = this._getAlumnoService.getAlumnos()
+    .subscribe({
+      next: (value: AlumniData[]) => {
+        this.estudiantes = value;
+      },
+    })
+  }
 
   newUserDialog() {
-    this.alumnoDialog.open(NuevoAlumnoComponent, {
+    this.alumniBd = this.alumnoDialog.open(NuevoAlumnoComponent, {
       data: {
         dialogHeader: 'Nuevo alumno',
         cancelButtonLabel: 'Cancelar', 
@@ -46,7 +57,7 @@ export class AlumnosComponent {
   }
 
   editUserDialog(editingUser: AlumniData) {
-    this.alumnoDialog.open(NuevoAlumnoComponent, {
+    this.alumniBd = this.alumnoDialog.open(NuevoAlumnoComponent, {
       data: {
         dialogHeader: 'Editar alumno',
         cancelButtonLabel: 'Cancelar', 
@@ -54,21 +65,22 @@ export class AlumnosComponent {
         dataForm: editingUser
       }
     }).afterClosed().subscribe({
-    next: (res) => {
-        if(editingUser) {
-          this.estudiantes = this.estudiantes.map( ele =>
-            ele.id === editingUser.id ? { ...ele, ...res } : ele
-          );
+      next: (res) => {
+          if(editingUser) {
+            this.estudiantes = this.estudiantes.map( ele =>
+              ele.id === editingUser.id ? { ...ele, ...res } : ele
+            );
+          }
         }
-      }
-    });
+      });
   }
 
   onDeleteUser(id: number): void {
     const dato = this.estudiantes.filter(ele => ele.id === id ).map(ele => ele.name);
+
     Swal.fire({
       title: '¿Está seguro?',
-      text: `El usuario ${dato} será eliminado`,
+      text: `El usuario ${ dato } será eliminado`,
       icon: 'warning',
       confirmButtonColor: '#ffffff',
       confirmButtonText: 'Aceptar',
@@ -76,12 +88,10 @@ export class AlumnosComponent {
       cancelButtonText: 'Cancelar',
       cancelButtonColor: '#212121'
     }).then((result) => {
-      console.log('ress', result);
       
       if (result.isConfirmed) {
         Swal.fire({
           title: "Eliminado",
-          text: "El usuario fue eliminado",
           icon: "success",
           confirmButtonColor: '#aeea00',
           confirmButtonText: 'Aceptar',
@@ -92,4 +102,7 @@ export class AlumnosComponent {
     })
   }
 
+  ngOnDestroy(): void {
+    this.alumniBd.unsubscribe();
+  }
 }

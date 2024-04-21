@@ -31,7 +31,7 @@
             </div>
 
             <div class="row">
-                <div class="col-lg-4 mb-3" *ngFor="let info of cursos">
+                <div class="col-lg-4 mb-3" *ngFor="let info of cursos | async">
                     <div class="curso-item" >
                         <div class="curso-item-title">
                             <p>{{info.titulo}}</p>
@@ -59,32 +59,11 @@
                     </div>
                     <div class="custom-list">
                         <ul>
-                            <li>
+                            <li *ngFor="let item of notiList | async">
                                 <mat-icon>description</mat-icon>
                                 <div class="custom-list-info">
-                                    <p>Creación de website</p>
-                                    <span>Clase 15609</span>
-                                </div>
-                            </li>
-                            <li>
-                                <mat-icon>description</mat-icon>
-                                <div class="custom-list-info">
-                                    <p>Prototipos</p>
-                                    <span>Clase 12512</span>
-                                </div>
-                            </li>
-                            <li>
-                                <mat-icon>description</mat-icon>
-                                <div class="custom-list-info">
-                                    <p>Primera entrega PF</p>
-                                    <span>Clase 15609</span>
-                                </div>
-                            </li>
-                            <li>
-                                <mat-icon>description</mat-icon>
-                                <div class="custom-list-info">
-                                    <p>Primera entrega PF</p>
-                                    <span>Clase 15609</span>
+                                    <p>{{ item.title }}</p>
+                                    <span>{{ item.cod }}</span>
                                 </div>
                             </li>
                         </ul>
