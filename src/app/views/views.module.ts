@@ -9,6 +9,7 @@ import { SidenavService } from '../core/services/sidenav.service';
 import { LayoutComponent } from './layout.component';
 import { AlumnosModule } from './alumnos/alumnos.module';
 import { AlumnosService } from '../core/services/alumnos.service';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -21,7 +22,8 @@ import { AlumnosService } from '../core/services/alumnos.service';
     CommonModule,
     SharedModule,
     ViewsRoutingModule,
-    AlumnosModule
+    AlumnosModule,
+    ReactiveFormsModule
   ],
   exports: [
     HomeComponent,

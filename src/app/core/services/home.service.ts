@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
-import { ICursos, INotif } from '../../shared/models/home.model';
+import { ICursosHome, INotifHome } from '../../shared/models/home.model';
 import { Observable, of } from 'rxjs';
 
-const cursosBD: ICursos[] = [
+const cursosBD: ICursosHome[] = [
   {
     titulo: 'Desarrollo web',
     categoria: 'Programación',
@@ -23,7 +23,7 @@ const cursosBD: ICursos[] = [
   }
 ]
 
-const notiBd: INotif[] = [
+const notiBd: INotifHome[] = [
   {
     title: 'Creación de website',
     cod: 'Clase 15609'
@@ -47,11 +47,11 @@ const notiBd: INotif[] = [
 })
 export class HomeService {
 
-  getCursos(): Observable<ICursos[]> {
+  getCursosHome(): Observable<ICursosHome[]> {
     return of(cursosBD)
   }
 
-  getNotif(): Observable<INotif[]> {
+  getNotifHome(): Observable<INotifHome[]> {
     return of(notiBd)
   }
 }

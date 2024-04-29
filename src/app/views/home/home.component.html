@@ -31,7 +31,7 @@
             </div>
 
             <div class="row">
-                <div class="col-lg-4 mb-3" *ngFor="let info of cursos | async">
+                <div class="col-lg-4 mb-3" *ngFor="let info of cursosHome | async">
                     <div class="curso-item" >
                         <div class="curso-item-title">
                             <p>{{info.titulo}}</p>
@@ -59,7 +59,7 @@
                     </div>
                     <div class="custom-list">
                         <ul>
-                            <li *ngFor="let item of notiList | async">
+                            <li *ngFor="let item of notiListHome | async">
                                 <mat-icon>description</mat-icon>
                                 <div class="custom-list-info">
                                     <p>{{ item.title }}</p>

@@ -1,1 +1,46 @@
-<p>cursos works!</p>
+<div class="cursos-container">
+    <div class="cursos-container-header">
+        <div class="cursos-container-header-title">
+            <mat-icon class="material-symbols-outlined">book</mat-icon>
+            <div>
+                <p>Cursos</p>
+            </div>
+        </div>
+        <!-- <button mat-flat-button color="primary" (click)="newUserDialog()">Nuevo alumno</button> -->
+    </div>
+    <div class="cursos-container-body">
+        <form [formGroup]="cursosForm" (ngSubmit)="saveBtn()">
+            <div class="row">
+                <div class="col-md-3">
+                    <mat-form-field appearance="outline" class="w-100">
+                        <mat-label>Curso</mat-label>
+                        <mat-select formControlName="cursoName">
+                            <mat-option [value]="curso" *ngFor="let curso of cursos | async" >
+                                {{curso.curso | titlecase}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+                <div class="col-md-3">
+                    <mat-form-field appearance="outline" class="w-100">
+                        <mat-label>Alumno</mat-label>
+                        <mat-select formControlName="alumnoName">
+                            <mat-option [value]="alumno" *ngFor="let alumno of alumnos | async">
+                                {{alumno.name | titlecase}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+                <div class="col-md-3">
+                    <mat-form-field appearance="outline" class="w-100">
+                        <mat-label>Nota</mat-label>
+                        <input matInput formControlName="nota">
+                    </mat-form-field>
+                </div>
+                <div class="col-md-3 d-flex align-items-center">
+                    <button mat-flat-button type="submit" color="primary" class="w-50">Guardar</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

@@ -21,9 +21,9 @@ export class HomeComponent {
     );
   }
 
-  cursos = this._homeBd.getCursos();
+  cursosHome = this._homeBd.getCursosHome();
 
-  notiList = this._homeBd.getNotif();
+  notiListHome = this._homeBd.getNotifHome();
 
   setTagColor(color: string) {
     switch(color) {

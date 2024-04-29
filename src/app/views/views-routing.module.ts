@@ -9,9 +9,9 @@ const ViewsRoutes: Routes = [
   {
     path: '', component: LayoutComponent,
     children:[
-      { path: '', component: AlumnosComponent },
+      { path: '', component: CursosComponent },
+      { path: 'alumnos', component: AlumnosComponent },
       { path: 'inicio', component:HomeComponent },
-      { path: 'cursos', component: CursosComponent }
     ]
   },
 
