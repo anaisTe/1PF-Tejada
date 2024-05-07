@@ -22,6 +22,10 @@ export class FormFieldValidationErrorsPipe implements PipeTransform {
           if (key === 'maxlength')
             messages.push(
               `No puede tener mas de ${errorDetail.requiredLength} caracteres`
+          );
+          if (key === 'max')
+            messages.push(
+              `La calificación máxima es 20.`
             );
           if (key === 'minlenght')
             messages.push(
