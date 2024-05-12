@@ -9,6 +9,8 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule, provideHttpClient, withFetch } from '@angular/common/http';
 import { ViewsModule } from './feature/layout/views.module';
 import { StoreModule } from '@ngrx/store';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { CommonModule } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -22,6 +24,8 @@ import { StoreModule } from '@ngrx/store';
     HttpClientModule,
     ViewsModule,
     StoreModule.forRoot({}, {}),
+    CommonModule,
+    BrowserAnimationsModule
   ],
   providers: [
     provideClientHydration(),

@@ -1,6 +1,9 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { CursosComponent } from './cursos.component';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { SharedModule } from '../../../shared/shared.module';
+import { ReactiveFormsModule } from '@angular/forms';
 
 describe('CursosComponent', () => {
   let component: CursosComponent;
@@ -8,7 +11,8 @@ describe('CursosComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [CursosComponent]
+      declarations: [CursosComponent],
+      imports: [HttpClientTestingModule, SharedModule, ReactiveFormsModule]
     })
     .compileComponents();
     

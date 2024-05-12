@@ -5,7 +5,9 @@ import { Observable } from 'rxjs';
 import { IMenuItem } from '../models/sidenav.model';
 import { environment } from '../../../environments/environment.development';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 
 export class SidenavService {
 

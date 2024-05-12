@@ -1,10 +1,10 @@
-import { NgModule } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { LoginComponent } from './login/login.component';
 import { RouterModule } from '@angular/router';
 import { AuthRoutes } from './auth.routing';
 import { SharedModule } from '../../shared/shared.module';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 
@@ -16,7 +16,9 @@ import { ReactiveFormsModule } from '@angular/forms';
     CommonModule,
     RouterModule.forChild(AuthRoutes),
     SharedModule,
-    ReactiveFormsModule
-  ]
+    ReactiveFormsModule,
+    FormsModule,
+  ],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class AuthModule { }

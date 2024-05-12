@@ -43,6 +43,7 @@ import { SidenavService } from '../core/services/sidenav.service';
 import { ViewsRoutingModule } from '../feature/layout/views-routing.module';
 import { FormFieldValidationErrorsPipe } from './pipes/form-validation-error.pipe';
 import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
 const materialModules = [

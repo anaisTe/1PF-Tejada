@@ -64,7 +64,7 @@
   "estudiantesBD": [
     {
       "name": "roberto",
-      "lastName": "diaz",
+      "lastName": "perez",
       "email": "roberto@mail.com",
       "course": "ANGULAR",
       "id": "6194",
@@ -133,6 +133,14 @@
       "email": "gerardo@mail.com",
       "course": "REACTJS",
       "createdAt": "2024-05-12T03:05:52.950Z"
+    },
+    {
+      "id": "9037",
+      "name": "rosita",
+      "lastName": "peralta",
+      "email": "rosita@mail.com",
+      "course": "DISEÑO",
+      "createdAt": "2024-05-12T16:29:56.662Z"
     }
   ],
   "cursosBD": [
@@ -167,6 +175,22 @@
         "createdAt": "2024-05-12T02:48:18.368Z"
       },
       "nota": "14"
+    },
+    {
+      "id": "2e09",
+      "cursoName": {
+        "id": 3,
+        "course": "DISEÑO"
+      },
+      "alumnoName": {
+        "id": "9037",
+        "name": "rosita",
+        "lastName": "peralta",
+        "email": "rosita@mail.com",
+        "course": "DISEÑO",
+        "createdAt": "2024-05-12T16:29:56.662Z"
+      },
+      "nota": "15"
     }
   ]
 }
