@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { MatSidenav } from '@angular/material/sidenav';
 import { Observable } from 'rxjs';
-import { IMenuItem } from '../../shared/models/sidenav.model';
+import { IMenuItem } from '../models/sidenav.model';
 import { environment } from '../../../environments/environment.development';
 
 @Injectable()

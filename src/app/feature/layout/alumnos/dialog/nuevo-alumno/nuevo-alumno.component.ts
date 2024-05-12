@@ -1,7 +1,7 @@
 import { Component, Inject } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-import { AlumniData, IAlumnosDialog } from '../../../../../shared/models/alumnos.model';
+import { AlumniData, IAlumnosDialog } from '../../../../../core/models/alumnos.model';
 import Swal from 'sweetalert2';
 
 @Component({

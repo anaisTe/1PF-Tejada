@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { ICreateHistoricoCurso, ICursos, IHistoricoCurso } from '../../shared/models/cursos.model';
+import { ICreateHistoricoCurso, ICursos, IHistoricoCurso } from '../models/cursos.model';
 import { Observable, of } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../../environments/environment.development';

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { ICursosHome, INotifHome } from '../../shared/models/home.model';
+import { ICursosHome, INotifHome } from '../models/home.model';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../../environments/environment.development';

@@ -2,10 +2,11 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { LayoutComponent } from './feature/layout/layout.component';
 import { LoginComponent } from './feature/auth/login/login.component';
+import { loginGuard } from './core/guards/login.guard';
 
 const AppRoutes: Routes = [
   {
-    path: '', redirectTo: 'inicio', pathMatch: 'full'
+    path: '', redirectTo: 'login', pathMatch: 'full'
   },
   {
     path: 'login',
@@ -14,6 +15,7 @@ const AppRoutes: Routes = [
   },
   {
     path: 'inicio', 
+    canActivate: [loginGuard],
     component: LayoutComponent,
     loadChildren: () => import('./feature/layout/views.module').then(m => m.ViewsModule)
   }

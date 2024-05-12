@@ -8,6 +8,7 @@ import { SharedModule } from './shared/shared.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule, provideHttpClient, withFetch } from '@angular/common/http';
 import { ViewsModule } from './feature/layout/views.module';
+import { StoreModule } from '@ngrx/store';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { ViewsModule } from './feature/layout/views.module';
     SharedModule,
     ReactiveFormsModule,
     HttpClientModule,
-    ViewsModule
+    ViewsModule,
+    StoreModule.forRoot({}, {}),
   ],
   providers: [
     provideClientHydration(),

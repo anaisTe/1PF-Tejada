@@ -3,7 +3,7 @@ import { CursosService } from '../../../core/services/cursos.service';
 import { AlumnosService } from '../../../core/services/alumnos.service';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import Swal from 'sweetalert2';
-import { ICursoForm, IHistoricoCurso } from '../../../shared/models/cursos.model';
+import { ICursoForm, IHistoricoCurso } from '../../../core/models/cursos.model';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 

@@ -1,5 +1,5 @@
 import { AfterViewInit, Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
-import { AlumniData } from '../../../shared/models/alumnos.model';
+import { AlumniData } from '../../../core/models/alumnos.model';
 import { MatDialog } from '@angular/material/dialog';
 import { NuevoAlumnoComponent } from './dialog/nuevo-alumno/nuevo-alumno.component';
 import Swal from 'sweetalert2';

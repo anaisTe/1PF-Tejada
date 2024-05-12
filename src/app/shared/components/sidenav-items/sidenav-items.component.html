@@ -6,4 +6,8 @@
   <li *ngFor="let item of ItemSidenav | async" routerLink="{{item.path}}" routerLinkActive="active" ariaCurrentWhenActive="page">
     {{item.textName}}
   </li>
+  <button mat-flat-button (click)="goOut()" color="primary">
+    <mat-icon>logout</mat-icon>
+    Cerrar sesión
+  </button>
 </ul>
