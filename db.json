@@ -134,5 +134,39 @@
       "course": "REACTJS",
       "createdAt": "2024-05-12T03:05:52.950Z"
     }
+  ],
+  "cursosBD": [
+    {
+      "id": "d13c",
+      "cursoName": {
+        "id": 1,
+        "course": "ANGULAR"
+      },
+      "alumnoName": {
+        "name": "roberto",
+        "lastName": "diaz",
+        "email": "roberto@mail.com",
+        "course": "ANGULAR",
+        "id": "6194",
+        "createdAt": "2024-05-12T01:50:36.963Z"
+      },
+      "nota": "12"
+    },
+    {
+      "id": "c1ec",
+      "cursoName": {
+        "id": 2,
+        "course": "REACTJS"
+      },
+      "alumnoName": {
+        "id": "151",
+        "name": "rocio",
+        "lastName": "chio",
+        "email": "rocio@mail.com",
+        "course": "REACTJS",
+        "createdAt": "2024-05-12T02:48:18.368Z"
+      },
+      "nota": "14"
+    }
   ]
 }

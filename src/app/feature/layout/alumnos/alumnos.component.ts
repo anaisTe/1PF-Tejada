@@ -17,7 +17,7 @@ export class AlumnosComponent implements OnInit, OnDestroy, AfterViewInit {
 
   displayedColumns: string[] = ['id', 'name', 'lastName', 'email', 'course', 'createdAt', 'action'];
   // estudiantes: AlumniData[] = [];
-  estudiantes = new MatTableDataSource<AlumniData>([]);;
+  estudiantes = new MatTableDataSource<AlumniData>([]);
 
   alumniBd!: Subscription;
 
