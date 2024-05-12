@@ -40,7 +40,7 @@ import { FooterComponent } from './components/footer/footer.component';
 import { HttpClientModule, provideHttpClient, withFetch } from '@angular/common/http';
 import { SidenavItemsComponent } from './components/sidenav-items/sidenav-items.component';
 import { SidenavService } from '../core/services/sidenav.service';
-import { ViewsRoutingModule } from '../views/views-routing.module';
+import { ViewsRoutingModule } from '../feature/layout/views-routing.module';
 import { FormFieldValidationErrorsPipe } from './pipes/form-validation-error.pipe';
 import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 

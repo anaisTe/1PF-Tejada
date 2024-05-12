@@ -2,7 +2,7 @@
 export type Course = 'ANGULAR' | 'REACTJS' | 'DISEÑO';
 
 export interface AlumniData {
-    id: number | any;
+    id: number;
     name: string;
     lastName: string;
     email: string;

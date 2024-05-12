@@ -1,25 +1,20 @@
-import { Component } from '@angular/core';
-import { menuItem } from '../../models/sidenav.model';
+import { Component, OnInit } from '@angular/core';
+import { SidenavService } from '../../../core/services/sidenav.service';
 
 @Component({
   selector: 'app-sidenav-items',
   templateUrl: './sidenav-items.component.html',
   styleUrl: './sidenav-items.component.scss'
 })
-export class SidenavItemsComponent {
+export class SidenavItemsComponent implements OnInit {
 
-  sidenavItems: menuItem[] = [
-    {
-      textName: 'Inicio',
-      path: '/inicio'
-    },
-    {
-      textName: 'Lista de alumnos',
-      path: '/alumnos'
-    },
-    {
-      textName: 'Cursos',
-      path: '/cursos'
-    }
-  ]
+  constructor(
+    private _sidenavService: SidenavService
+  ){}
+
+  ItemSidenav = this._sidenavService.getItemSidenav();
+
+  ngOnInit(): void {
+    
+  }
 }

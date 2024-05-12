@@ -1,41 +1,57 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
-import { AlumniData } from '../../shared/models/alumnos.model';
+import { AfterViewInit, Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { AlumniData } from '../../../shared/models/alumnos.model';
 import { MatDialog } from '@angular/material/dialog';
 import { NuevoAlumnoComponent } from './dialog/nuevo-alumno/nuevo-alumno.component';
 import Swal from 'sweetalert2';
 import { Subscription, take } from 'rxjs';
-import { AlumnosService } from '../../core/services/alumnos.service';
+import { AlumnosService } from '../../../core/services/alumnos.service';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatTableDataSource } from '@angular/material/table';
 
 @Component({
   selector: 'app-alumnos',
   templateUrl: './alumnos.component.html',
   styleUrl: './alumnos.component.scss'
 })
-export class AlumnosComponent implements OnInit, OnDestroy {
+export class AlumnosComponent implements OnInit, OnDestroy, AfterViewInit {
 
   displayedColumns: string[] = ['id', 'name', 'lastName', 'email', 'course', 'createdAt', 'action'];
-  estudiantes: AlumniData[] = [];
+  // estudiantes: AlumniData[] = [];
+  estudiantes = new MatTableDataSource<AlumniData>([]);;
 
   alumniBd!: Subscription;
 
+  loading: boolean = false;
+
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
+
   constructor(
     public alumnoDialog: MatDialog,
-    private _getAlumnoService: AlumnosService
+    private _AlumnoService: AlumnosService
   ) { }
 
   ngOnInit(): void {
-    
-    this.getDatos();
+
+    this.alumniBd = this._AlumnoService.getAlumnos()
+    .subscribe({
+      next: (value: AlumniData[]) => {
+        this.estudiantes.data = value;
+      },
+      error: (err) => {
+        console.warn(err);
+        Swal.fire({
+          title: 'Ocurrio un error',
+          icon: 'error',
+          confirmButtonColor: '#aeea00',
+          confirmButtonText: 'Cerrar',
+        });
+      }
+    })
 
   }
 
-  getDatos() {
-    this.alumniBd = this._getAlumnoService.getAlumnos()
-    .subscribe({
-      next: (value: AlumniData[]) => {
-        this.estudiantes = value;
-      },
-    })
+  ngAfterViewInit() {
+    this.estudiantes.paginator = this.paginator;
   }
 
   newUserDialog() {
@@ -47,13 +63,15 @@ export class AlumnosComponent implements OnInit, OnDestroy {
       }
     }).afterClosed().pipe(take(1)).subscribe({
         next: (value) => {
-          value.id = this.estudiantes.map(ele => ele.id + 1 ).pop()
-    
+          value.id = Math.floor(Math.random() * 10000).toString()
+          
           value.createdAt = new Date();
-            
-          this.estudiantes = [...this.estudiantes, value]
+      
+          this._AlumnoService.postAlumnos(value).subscribe();
+
         }
       })
+  
   }
 
   editUserDialog(editingUser: AlumniData) {
@@ -66,18 +84,17 @@ export class AlumnosComponent implements OnInit, OnDestroy {
       }
     }).afterClosed().subscribe({
       next: (res) => {
-          if(editingUser) {
-            this.estudiantes = this.estudiantes.map( ele =>
-              ele.id === editingUser.id ? { ...ele, ...res } : ele
-            );
-          }
+        res.id = editingUser.id;
+        res.createdAt = editingUser.createdAt;
+
+        this._AlumnoService.editAlumno(res).subscribe();
         }
       });
   }
 
   onDeleteUser(id: number): void {
-    const dato = this.estudiantes.filter(ele => ele.id === id ).map(ele => ele.name);
-
+    const dato = this.estudiantes.data.filter(ele => ele.id === id ).map(ele => ele.name);
+    
     Swal.fire({
       title: '¿Está seguro?',
       text: `El usuario ${ dato } será eliminado`,
@@ -97,7 +114,11 @@ export class AlumnosComponent implements OnInit, OnDestroy {
           confirmButtonText: 'Aceptar',
         });
         
-        this.estudiantes = this.estudiantes.filter( ele => ele.id != id);
+        this._AlumnoService.deleteAlumno(id).subscribe();
+
+        setTimeout( () => {
+          window.location.reload();
+        }, 2000)
       }
     })
   }

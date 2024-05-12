@@ -7,7 +7,7 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
 import { SharedModule } from './shared/shared.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule, provideHttpClient, withFetch } from '@angular/common/http';
-import { ViewsModule } from './views/views.module';
+import { ViewsModule } from './feature/layout/views.module';
 
 @NgModule({
   declarations: [

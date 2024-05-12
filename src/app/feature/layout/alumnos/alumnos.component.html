@@ -9,7 +9,6 @@
         </div>
         <button mat-flat-button color="primary" (click)="newUserDialog()">Nuevo alumno</button>
     </div>
-
     <div class="alumnos-container-table col-12">
         <table mat-table [dataSource]="estudiantes">
             <ng-container matColumnDef="id">
@@ -57,6 +56,12 @@
             <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
             <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
         </table>   
+        <mat-paginator [length]="100"
+              [pageSize]="5"
+              [pageSizeOptions]="[5, 10, 25, 100]"
+              aria-label="Select page">
+        </mat-paginator>
+
     </div>
 </div>
 

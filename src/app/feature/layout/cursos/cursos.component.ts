@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { CursosService } from '../../core/services/cursos.service';
-import { AlumnosService } from '../../core/services/alumnos.service';
+import { CursosService } from '../../../core/services/cursos.service';
+import { AlumnosService } from '../../../core/services/alumnos.service';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import Swal from 'sweetalert2';
-import { ICursoForm, IHistoricoCurso } from '../../shared/models/cursos.model';
+import { ICursoForm, IHistoricoCurso } from '../../../shared/models/cursos.model';
 
 @Component({
   selector: 'app-cursos',

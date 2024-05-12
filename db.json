@@ -1,0 +1,138 @@
+{
+  "sideNavMenu": [
+    {
+      "textName": "Inicio",
+      "path": "/inicio",
+      "id": "c694"
+    },
+    {
+      "textName": "Lista de alumnos",
+      "path": "/inicio/alumnos",
+      "id": "378f"
+    },
+    {
+      "textName": "Cursos",
+      "path": "/inicio/cursos",
+      "id": "2214"
+    }
+  ],
+  "cursosHome": [
+    {
+      "titulo": "Desarrollo web",
+      "categoria": "Programación",
+      "fecha": "01 Abr 2024, 03:30pm",
+      "tag": "En curso",
+      "id": "0b3b"
+    },
+    {
+      "titulo": "Photoshop e Illustrator",
+      "categoria": "Diseño UX/UI",
+      "fecha": "20 Abr 2024, 06:30pm",
+      "tag": "En curso",
+      "id": "81eb"
+    },
+    {
+      "titulo": "Google Ads",
+      "categoria": "Negocio",
+      "fecha": "02 Oct 2023, 04:30pm",
+      "tag": "Culminado",
+      "id": "0298"
+    }
+  ],
+  "notifHome": [
+    {
+      "title": "Creación de website",
+      "cod": "Clase 15609",
+      "id": "a783"
+    },
+    {
+      "title": "Prototipos",
+      "cod": "Clase 12512",
+      "id": "6933"
+    },
+    {
+      "title": "Primera entrega PF",
+      "cod": "Clase 15609",
+      "id": "38f1"
+    },
+    {
+      "title": "Primera entrega PF",
+      "cod": "Clase 15609",
+      "id": "76b3"
+    }
+  ],
+  "estudiantesBD": [
+    {
+      "name": "roberto",
+      "lastName": "diaz",
+      "email": "roberto@mail.com",
+      "course": "ANGULAR",
+      "id": "6194",
+      "createdAt": "2024-05-12T01:50:36.963Z"
+    },
+    {
+      "id": "4528",
+      "name": "margot",
+      "lastName": "rosales",
+      "email": "margot@mail.com",
+      "course": "REACTJS",
+      "createdAt": "2024-05-12T01:50:58.951Z"
+    },
+    {
+      "name": "Micaela",
+      "lastName": "nieto",
+      "email": "micaela@mail.com",
+      "course": "ANGULAR",
+      "id": "6029",
+      "createdAt": "2024-05-12T02:47:54.545Z"
+    },
+    {
+      "id": "151",
+      "name": "rocio",
+      "lastName": "chio",
+      "email": "rocio@mail.com",
+      "course": "REACTJS",
+      "createdAt": "2024-05-12T02:48:18.368Z"
+    },
+    {
+      "id": "2260",
+      "name": "mario",
+      "lastName": "fernandez",
+      "email": "mario@mail.com",
+      "course": "REACTJS",
+      "createdAt": "2024-05-12T02:48:40.125Z"
+    },
+    {
+      "id": "950",
+      "name": "maria",
+      "lastName": "garcia",
+      "email": "maria@mail.com",
+      "course": "DISEÑO",
+      "createdAt": "2024-05-12T02:49:03.199Z"
+    },
+    {
+      "id": "4823",
+      "name": "elisa",
+      "lastName": "mendez",
+      "email": "elisa@mail.com",
+      "course": "DISEÑO",
+      "createdAt": "2024-05-12T02:49:33.817Z"
+    },
+    {
+      "id": "1806",
+      "name": "Luis",
+      "lastName": "corso",
+      "email": "luis@mail.com",
+      "course": "REACTJS",
+      "createdAt": "2024-05-12T02:50:07.152Z"
+    },
+    {
+      "id": "2442",
+      "name": "gerardo",
+      "lastName": "castilla",
+      "email": "gerardo@mail.com",
+      "course": "REACTJS",
+      "createdAt": "2024-05-12T03:05:52.950Z"
+    }
+  ]
+}

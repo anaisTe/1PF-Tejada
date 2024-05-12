@@ -1,7 +1,7 @@
 import { Component, Inject } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-import { IAlumnosDialog } from '../../../../shared/models/alumnos.model';
+import { AlumniData, IAlumnosDialog } from '../../../../../shared/models/alumnos.model';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -11,9 +11,11 @@ import Swal from 'sweetalert2';
 })
 export class NuevoAlumnoComponent {
 
+  formValues: AlumniData[] = [];
+
   constructor(
     private matDialogRef: MatDialogRef<NuevoAlumnoComponent>,
-    @Inject(MAT_DIALOG_DATA) public data?: IAlumnosDialog
+    @Inject(MAT_DIALOG_DATA) public data?: IAlumnosDialog,
   ) {
     matDialogRef.disableClose = true;
 
@@ -49,6 +51,7 @@ export class NuevoAlumnoComponent {
     if (this.newUserForm.invalid) {
       this.newUserForm.markAllAsTouched();
     } else {
+  
       this.matDialogRef.close(this.newUserForm.value);
 
       Swal.fire({
@@ -56,6 +59,10 @@ export class NuevoAlumnoComponent {
         icon: 'success',
         confirmButtonColor: '#aeea00',
         confirmButtonText: 'Aceptar',
+      }).then( (result) => {
+        if(result.isConfirmed) {
+          window.location.reload();
+        }
       })
     } 
   }

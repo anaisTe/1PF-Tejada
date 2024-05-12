@@ -1,23 +1,37 @@
 import { Injectable } from '@angular/core';
 import { AlumniData } from '../../shared/models/alumnos.model';
-import { Observable, of } from 'rxjs';
+import { Observable, catchError } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
+import { environment } from '../../../environments/environment.development';
 
-  const estudiantesBD: AlumniData[] = [
-    {id: 10345, lastName: 'Garcia', name: 'kika', email: 'kika@mail.com', course: 'ANGULAR', createdAt: new Date(),},
-    {id: 10346, lastName: 'Perez', name: 'lucia', email: 'lucia@mail.com', course: 'ANGULAR', createdAt: new Date(),},
-    {id: 10347, lastName: 'Balta', name: 'nancy', email: 'nancy@mail.com', course: 'ANGULAR', createdAt: new Date(),},
-    {id: 10348, lastName: 'Flores', name: 'mailo', email: 'mailo@mail.com', course: 'REACTJS', createdAt: new Date(),},
-    {id: 10349, lastName: 'Castillo', name: 'barto', email: 'barto@mail.com', course: 'REACTJS', createdAt: new Date(),},
-    {id: 10350, lastName: 'Mendez', name: 'gonzalo', email: 'gonzalo@mail.com', course: 'DISEÑO', createdAt: new Date(),}
-  ];
 
 @Injectable({
   providedIn: 'root'
 })
 export class AlumnosService {
 
+  constructor(
+    private _httpClient: HttpClient
+  ) {}
+
   getAlumnos(): Observable<AlumniData[]> {
-    return of(estudiantesBD)
+    return this._httpClient.get<AlumniData[]>(`${environment.baseAPIURL}/estudiantesBD`)
   }
 
+  postAlumnos(usuario: AlumniData): Observable<AlumniData[]> {
+    return this._httpClient.post<AlumniData[]>(`${environment.baseAPIURL}/estudiantesBD`, usuario)
+  }
+
+  editAlumno(usuario: AlumniData): Observable<AlumniData[]> {
+    const id = usuario.id;
+    return this._httpClient.put<AlumniData[]>(`${environment.baseAPIURL}/estudiantesBD/${id}`, usuario)
+  }
+
+  deleteAlumno(Id: number): Observable<unknown> {
+    const url = `${environment.baseAPIURL}/estudiantesBD/${Id}`;
+    return this._httpClient.delete(url).pipe(
+      catchError(err => {
+      throw 'error in source. Details: ' + err;
+    }))
+  }
 }
