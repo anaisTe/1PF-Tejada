@@ -21,8 +21,6 @@ export class AlumnosComponent implements OnInit, OnDestroy, AfterViewInit {
 
   alumniBd!: Subscription;
 
-  loading: boolean = false;
-
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
   constructor(

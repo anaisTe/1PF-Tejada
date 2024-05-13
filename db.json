@@ -71,11 +71,11 @@
       "createdAt": "2024-05-12T01:50:36.963Z"
     },
     {
-      "id": "4528",
       "name": "margot",
       "lastName": "rosales",
       "email": "margot@mail.com",
       "course": "REACTJS",
+      "id": "4528",
       "createdAt": "2024-05-12T01:50:58.951Z"
     },
     {
@@ -143,6 +143,20 @@
       "createdAt": "2024-05-12T16:29:56.662Z"
     }
   ],
+  "itemCursoSelect": [
+    {
+      "id": "1",
+      "course": "ANGULAR"
+    },
+    {
+      "id": "2",
+      "course": "REACTJS"
+    },
+    {
+      "id": "3",
+      "course": "DISEÑO"
+    }
+  ],
   "cursosBD": [
     {
       "id": "d13c",
@@ -175,22 +189,6 @@
         "createdAt": "2024-05-12T02:48:18.368Z"
       },
       "nota": "14"
-    },
-    {
-      "id": "2e09",
-      "cursoName": {
-        "id": 3,
-        "course": "DISEÑO"
-      },
-      "alumnoName": {
-        "id": "9037",
-        "name": "rosita",
-        "lastName": "peralta",
-        "email": "rosita@mail.com",
-        "course": "DISEÑO",
-        "createdAt": "2024-05-12T16:29:56.662Z"
-      },
-      "nota": "15"
     }
   ]
 }

@@ -14,7 +14,7 @@
                     <mat-form-field appearance="outline" class="w-100">
                         <mat-label for="curso" class="form-label">Curso</mat-label>
                         <mat-select id="curso" formControlName="cursoName">
-                            <mat-option [value]="curso" *ngFor="let curso of cursos | async" >
+                            <mat-option [value]="curso" *ngFor="let curso of cursos" >
                                 {{curso.course | titlecase}}
                             </mat-option>
                         </mat-select>

@@ -3,6 +3,7 @@ import { LayoutComponent } from './layout.component';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { SharedModule } from '../../shared/shared.module';
 import { RouterTestingModule } from '@angular/router/testing';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
 
 
@@ -13,7 +14,7 @@ describe('LayoutComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [LayoutComponent],
-      imports: [HttpClientTestingModule, SharedModule, RouterTestingModule]
+      imports: [HttpClientTestingModule, SharedModule, RouterTestingModule, NoopAnimationsModule]
     })
     .compileComponents();
     

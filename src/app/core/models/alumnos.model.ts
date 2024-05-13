@@ -7,7 +7,7 @@ export interface AlumniData {
     lastName: string;
     email: string;
     course: Course;
-    createdAt: Date;
+    createdAt: Date | any;
 }
 
 export interface IAlumnosDialog {

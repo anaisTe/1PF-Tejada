@@ -4,20 +4,6 @@ import { Observable, of } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../../environments/environment.development';
 
-const cursosBd: ICursos[] = [
-  {
-    id: 1,
-    course: 'ANGULAR'
-  },
-  {
-    id: 2,
-    course: 'REACTJS'
-  },
-  {
-    id: 3,
-    course: 'DISEÑO'
-  }
-]
 
 @Injectable({
   providedIn: 'root'
@@ -29,7 +15,7 @@ export class CursosService {
   ) {}
 
   getCursos(): Observable<ICursos[]> {
-    return of(cursosBd)
+    return this._httpClient.get<ICursos[]>(`${environment.baseAPIURL}/itemCursoSelect`)
   }
 
   // createHistoricoCurso(data: ICreateHistoricoCurso) {

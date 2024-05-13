@@ -20,18 +20,7 @@ export class LoginService {
   private _authUser$ = new BehaviorSubject<IUser | null>(null);
   public authUser$ = this._authUser$.asObservable();
 
-  constructor(private router: Router) {
-    
-  }
-
-  getItem(key: string): any {
-    if (typeof localStorage !== 'undefined') {
-      return localStorage.getItem(key);
-    } else {
-      console.error('localStorage is not available.');
-      return null;
-    }
-  }
+  constructor(private router: Router) {}
 
   login(data: ILogin): void {
     if (data.email !== 'usuario@mail.com' || data.password !== '123456') {
@@ -47,7 +36,7 @@ export class LoginService {
   }
 
   verifyToken(): boolean {
-    const token = this.getItem('accessToken');
+    const token = localStorage.getItem('accessToken');
     if (token) {
       this._authUser$.next(this.DATA_USER);
       return true;

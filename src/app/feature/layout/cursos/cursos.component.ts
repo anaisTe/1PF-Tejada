@@ -3,7 +3,7 @@ import { CursosService } from '../../../core/services/cursos.service';
 import { AlumnosService } from '../../../core/services/alumnos.service';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import Swal from 'sweetalert2';
-import { ICursoForm, IHistoricoCurso } from '../../../core/models/cursos.model';
+import { ICursoForm, ICursos, IHistoricoCurso } from '../../../core/models/cursos.model';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 
@@ -28,7 +28,7 @@ export class CursosComponent implements OnInit, AfterViewInit {
     ])
   })
 
-  cursos = this._cursosService.getCursos();
+  cursos: ICursos[] = []
   cursoVal = '';
   alumnosSelectList: any[] = [];
 
@@ -83,9 +83,21 @@ export class CursosComponent implements OnInit, AfterViewInit {
     })
   }
 
+  getCursoList() {
+    this._cursosService.getCursos().subscribe({
+      next: (val: ICursos[]) => {
+        this.cursos = val;        
+      }, 
+      error: (err) => {
+        console.log(err);
+      }
+    });
+  }
+
   ngOnInit() {
     this.cursoSelectVal();
     this.alumnoSelectVal();
+    this.getCursoList();
     
     this._cursosService.getCursosHistorico().subscribe({
       next: (value: IHistoricoCurso[]) => {

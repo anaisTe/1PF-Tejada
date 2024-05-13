@@ -36,7 +36,7 @@ export class LoginComponent {
   }
 
   constructor(
-    private router: Router,
+    // private router: Router,
     private _loginService: LoginService
   ) {}
 

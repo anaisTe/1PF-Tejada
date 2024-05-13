@@ -4,6 +4,7 @@ import { NuevoAlumnoComponent } from './nuevo-alumno.component';
 import { MAT_DIALOG_DATA, MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 import { SharedModule } from '../../../../../shared/shared.module';
 import { ReactiveFormsModule } from '@angular/forms';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
 
 describe('NuevoAlumnoComponent', () => {
@@ -13,7 +14,7 @@ describe('NuevoAlumnoComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [NuevoAlumnoComponent],
-      imports: [MatDialogModule, SharedModule, ReactiveFormsModule],
+      imports: [MatDialogModule, SharedModule, ReactiveFormsModule, NoopAnimationsModule],
       providers: [
         { provide: MatDialogRef, useValue: {} },
         { provide: MAT_DIALOG_DATA, useValue: {} }

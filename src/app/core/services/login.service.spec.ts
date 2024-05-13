@@ -13,4 +13,14 @@ describe('LoginService', () => {
   it('should be created', () => {
     expect(service).toBeTruthy();
   });
+
+  it('should logout user', () => {
+    const authUserSpy = spyOn(service['_authUser$'], 'next').and.callThrough();
+    
+    service.logout();
+
+    expect(authUserSpy).toHaveBeenCalledWith(null);
+
+    expect(localStorage.getItem('accessToken')).toBeNull();
+  });
 });
