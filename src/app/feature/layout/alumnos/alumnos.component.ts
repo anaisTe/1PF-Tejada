@@ -3,10 +3,13 @@ import { AlumniData } from '../../../core/models/alumnos.model';
 import { MatDialog } from '@angular/material/dialog';
 import { NuevoAlumnoComponent } from './dialog/nuevo-alumno/nuevo-alumno.component';
 import Swal from 'sweetalert2';
-import { Subscription, take } from 'rxjs';
+import { Observable, Subscription, take } from 'rxjs';
 import { AlumnosService } from '../../../core/services/alumnos.service';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
+import {  Store } from '@ngrx/store';
+import { selectAlumnos} from '../../../store/alumnos/alumnosSelector';
+import * as AlumnosActions from '../../../store/alumnos/alumnosActions';
 
 @Component({
   selector: 'app-alumnos',
@@ -16,24 +19,29 @@ import { MatTableDataSource } from '@angular/material/table';
 export class AlumnosComponent implements OnInit, OnDestroy, AfterViewInit {
 
   displayedColumns: string[] = ['id', 'name', 'lastName', 'email', 'course', 'createdAt', 'action'];
-  // estudiantes: AlumniData[] = [];
   estudiantes = new MatTableDataSource<AlumniData>([]);
-
   alumniBd!: Subscription;
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
+  estudiantes$: Observable<AlumniData[]>;
+
   constructor(
     public alumnoDialog: MatDialog,
-    private _AlumnoService: AlumnosService
-  ) { }
+    private _AlumnoService: AlumnosService,
+    private store: Store<{ alumnos: AlumniData[] }>,
+  ) { 
+    this.estudiantes$ = this.store.select(selectAlumnos)
+  }
 
   ngOnInit(): void {
+    this.store.dispatch(AlumnosActions.loadAlumnos());
 
     this.alumniBd = this._AlumnoService.getAlumnos()
     .subscribe({
       next: (value: AlumniData[]) => {
-        this.estudiantes.data = value;
+        // this.estudiantes.data = value;
+        this.store.dispatch(AlumnosActions.loadAlumnosSuccess({ data: value }));
       },
       error: (err) => {
         console.warn(err);
@@ -65,8 +73,9 @@ export class AlumnosComponent implements OnInit, OnDestroy, AfterViewInit {
           
           value.createdAt = new Date();
       
-          this._AlumnoService.postAlumnos(value).subscribe();
-
+          this._AlumnoService.postAlumnos(value).subscribe( () => {
+            this.store.dispatch(AlumnosActions.addAlumno({ alumno: value }));
+          });
         }
       })
   
@@ -85,7 +94,9 @@ export class AlumnosComponent implements OnInit, OnDestroy, AfterViewInit {
         res.id = editingUser.id;
         res.createdAt = editingUser.createdAt;
 
-        this._AlumnoService.editAlumno(res).subscribe();
+        this._AlumnoService.editAlumno(res).subscribe( () => {
+          this.store.dispatch(AlumnosActions.editAlumno({ alumno: res }));
+        });
         }
       });
   }
@@ -112,7 +123,9 @@ export class AlumnosComponent implements OnInit, OnDestroy, AfterViewInit {
           confirmButtonText: 'Aceptar',
         });
         
-        this._AlumnoService.deleteAlumno(id).subscribe();
+        this._AlumnoService.deleteAlumno(id).subscribe( () => {
+          this.store.dispatch(AlumnosActions.deleteAlumno({ id }));
+        });
 
         setTimeout( () => {
           window.location.reload();
